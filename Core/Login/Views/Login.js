@@ -7,7 +7,7 @@ import {
 	Pressable,
 	Image,
 } from 'react-native';
-import axios from 'axios'
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PersonInBed from '../../../assets/Icons/PersonInBed.png';
 
@@ -16,7 +16,28 @@ export default function Login({ navigation }) {
 	const [password, onChangePasswordText] = React.useState('');
 	const [showPassword, setShowPassword] = React.useState(true);
 
+	const getdata = async () => {
+		const url = 'http://localhost:1000/api/v1/user/login?username=tuan882612&password=Tt12345678'
+		const data = await axios.get(url)
+			.then(res => res.json())
+			.then(da => console.log(da))
+			.catch(err => console.log(err))
+		return data
+	}
+
 	const handleLogin = () => {
+		// let query = '?username='+username+'&password='+password
+		let query = '?username=tuan882612&password=Tt12345678'
+
+		// let response = await fetch(
+		// 	'http://localhost:1000/api/v1/user/login'+query
+		// ).then(res => res.json())
+		// .then(data => console.log(data))
+
+		// axios.get('http://localhost:1000/api/v1/user/login?username=tuan882612&password=Tt12345678')
+		// 	.then(res => console.log(res))
+		
+		console.log(getdata())
 		navigation.navigate('Home');
 	};
 
@@ -25,7 +46,6 @@ export default function Login({ navigation }) {
 			<Image
 				source={PersonInBed}
 				style={{ width: '50%', height: '20%' }}
-                
 			/>
 			<Text style={styles.title}>JetLax</Text>
 			<View style={styles.inputBox}>
@@ -82,7 +102,7 @@ export default function Login({ navigation }) {
 					style={{
 						fontSize: '30%',
 						color: 'white',
-						paddingBottom: 5,
+						paddingBottom: '3%',
 						marginBottom: 10,
 					}}
 				>
@@ -102,7 +122,7 @@ export default function Login({ navigation }) {
 					style={{
 						fontSize: '30%',
 						color: 'white',
-						paddingBottom: 5,
+						paddingBottom: '3%',
 						marginBottom: 10,
 					}}
 				>
@@ -112,7 +132,7 @@ export default function Login({ navigation }) {
 			</View>
 			<Pressable
 				style={styles.registerButton}
-				onPress={() => navigation.navigate('Register')}
+				onPress={() => navigation.navigate('Home')}
 			>
 				<Text style={styles.registerButtonText}>Create an Account</Text>
 			</Pressable>
@@ -178,7 +198,6 @@ const styles = StyleSheet.create({
 		marginTop: '1%',
 	},
 	continueButtonText: { textAlign: 'center', fontSize: '20%' },
-
 	registerButton: {
 		position: 'relative',
 		backgroundColor: 'white',
@@ -187,7 +206,7 @@ const styles = StyleSheet.create({
 		borderRadius: 90,
 		width: '90%',
 		height: '9%',
-		marginTop: '10%',
+		marginTop: '5%',
 	},
 
 	registerButtonText: { textAlign: 'center', fontSize: '20%' },
