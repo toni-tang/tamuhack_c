@@ -11,34 +11,47 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PersonInBed from '../../../assets/Icons/PersonInBed.png';
 
+const users = [
+	{
+		"_id": "tuan882612",
+		"email": "tuan882612@gmail.com",
+		"password": "Tt12345678",
+		"sleep": ""
+	},
+	{
+		"_id": "cool",
+		"email": "cool@gmail.com",
+		"password": "cool123",
+		"sleep": ""
+	},
+	{
+		"_id": "root",
+		"email": "root@gmail.com",
+		"password": "admin",
+		"sleep": ""
+	}
+]
+
 export default function Login({ navigation }) {
 	const [username, onChangeUsernameText] = React.useState('');
 	const [password, onChangePasswordText] = React.useState('');
 	const [showPassword, setShowPassword] = React.useState(true);
-
-	const getdata = async () => {
-		const url = 'http://localhost:1000/api/v1/user/login?username=tuan882612&password=Tt12345678'
-		const data = await axios.get(url)
-			.then(res => res.json())
-			.then(da => console.log(da))
-			.catch(err => console.log(err))
-		return data
+	
+	const grabData = async () => {
+		const url = 'http://localhost:1000/api/v1/user/login'
+		const query = '?username=tuan882612&password=Tt12345678'
+		const data = await axios.get(url+query)
+			.then(req => console.log(req))
+			// .catch(err => console.log(err))
 	}
 
 	const handleLogin = () => {
-		// let query = '?username='+username+'&password='+password
-		let query = '?username=tuan882612&password=Tt12345678'
-
-		// let response = await fetch(
-		// 	'http://localhost:1000/api/v1/user/login'+query
-		// ).then(res => res.json())
-		// .then(data => console.log(data))
-
-		// axios.get('http://localhost:1000/api/v1/user/login?username=tuan882612&password=Tt12345678')
-		// 	.then(res => console.log(res))
-		
-		console.log(getdata())
-		navigation.navigate('Home');
+		users.filter(user => {
+			if (user.password === password && user._id === username) {
+				navigation.navigate('Home');
+			}
+		})
+		// grabData()
 	};
 
 	return (
