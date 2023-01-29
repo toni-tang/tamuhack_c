@@ -19,12 +19,7 @@ export default function Flights({ navigation }) {
 	const [destinationTimezone, setDestinationTimeZone] = React.useState(
 		new Date()
 	);
-	const dictionary = ['DAL', 'LAX'];
-	const airports = new Map();
-
-	airports.set('DAL', 'PST');
-	airports.set('LAX', 'CEN');
-	airports.set('DAL', 'PST');
+	const dictionary = ['DFW', 'LAX', 'LHR', 'IST', 'SAW', 'DAL', 'FRA', 'NRT' ];
 
 	const handleOnClick = () => {};
 

@@ -8,8 +8,8 @@ import {
 import NavigationBar from './NavigationBar';
 
 export default function Home({ navigation }) {
-	const [bedtime, setBedtime] = React.useState(0);
-	const [travelBedtime, setTravelBedtime] = React.useState(0);
+	const [bedtime, setBedtime] = React.useState(12);
+	const [travelBedtime, setTravelBedtime] = React.useState(10);
 
 	return (
 		<View style={styles.container}>
