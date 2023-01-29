@@ -1,44 +1,37 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+} from 'react-native';
+import NavigationBar from './NavigationBar';
 
 export default function Home({ navigation }) {
 	const [bedtime, setBedtime] = React.useState(0);
+	const [travelBedtime, setTravelBedtime] = React.useState(0);
 
 	return (
 		<View style={styles.container}>
-			<Text>JetLax</Text>
-			<View style={styles.textContainer}>
-				<Text>Hours until bedtime</Text>
-				<Text>{bedtime} hours</Text>
-			</View>
-			<View style={styles.textContainer}>
-				<Text>Hours until bedtime for traveling</Text>
-				<Text>{bedtime} hours</Text>
+			{/* <Text style={styles.title}>JetLax</Text> */}
+			<View style={{ paddingTop: '25%' }}>
+				<View style={styles.textContainer}>
+					<Text style={styles.subtext}>Hours until bedtime</Text>
+					<Text style={styles.time}>{bedtime}</Text>
+					<Text style={styles.hours}>hours</Text>
+				</View>
+
+
+				<View style={styles.textContainer}>
+					<Text style={styles.subtext}>
+						Hours until bedtime for traveling
+					</Text>
+					<Text style={styles.time}>{travelBedtime}</Text>
+					<Text style={styles.hours}>hours</Text>
+				</View>
 			</View>
 			<Image></Image>
-			<View style={styles.navigatorContainer}>
-				<View>
-					<Pressable onPress={() => navigation.navigate('Login')}>
-						<Icon
-							name='calendar'
-							size={'50%'}
-						></Icon>
-					</Pressable>
-					<Text>Calender</Text>
-				</View>
-				<View>
-					<Pressable onPress={() => navigation.navigate('Login')}>
-						<Icon
-							name='airplane'
-							size={'50%'}
-						></Icon>
-					</Pressable>
-					<Text>Flights</Text>
-				</View>
-			</View>
-			<StatusBar style='auto' />
+			<NavigationBar navigation={navigation} />
 		</View>
 	);
 }
@@ -46,24 +39,15 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#63a3f7',
 		alignItems: 'center',
-		justifyContent: 'center',
 	},
-	navigatorContainer: {
-		position: 'absolute',
-		bottom: '0%',
-		height: '15%',
-		width: '100%',
-		flexDirection: 'row',
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
-		backgroundColor: 'grey',
-	},
-	subtext: {},
-	time: {},
+	subtext: { fontSize: '22%', color: 'white', paddingBottom:10, },
+	time: { fontSize: '60%', fontWeight: 'bold', color: 'white' },
 	textContainer: {
 		alignItems: 'center',
-		padding: 20,
+		padding: 30,
 	},
+	hours: { fontSize: '18%', fontWeight: 'bold', color: 'white' },
+
 });
